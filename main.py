@@ -1,5 +1,5 @@
 from pyamaze import agent, maze
-from time import sleep
+
 class Robot(agent):
 
     def look(self, direction):
@@ -50,12 +50,18 @@ class Robot(agent):
         return path
 
 def main():
+
+    # Create maze and robot
     m = maze(20, 20)
     m.CreateMaze(loadMaze="20x20.csv")
     r = Robot(m, shape="arrow")
+
+    # Find the path out of the maze
     start = r.position
     p = r.escape()
     r.position = start
+
+    # Show the path out of the maze
     r.footprints = True
     m.tracePath({ r: p }, delay=20)
     m.run()
