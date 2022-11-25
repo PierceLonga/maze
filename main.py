@@ -8,6 +8,7 @@ class Robot(agent):
     
     def turnLeft(self):
         direction = (self._orient - 1)%4
+    
         self.look(direction)
     
     def turnBack(self):
@@ -52,10 +53,10 @@ class Robot(agent):
 def main():
 
     # Create maze and robot
-    m = maze(20, 20)
-    m.CreateMaze(loadMaze="20x20.csv")
+    m = maze(5, 5)
+    m.CreateMaze(loadMaze="maze--2022-11-25--14-43-24.csv")
     r = Robot(m, shape="arrow")
-
+    
     # Find the path out of the maze
     start = r.position
     p = r.escape()
@@ -64,6 +65,7 @@ def main():
     # Show the path out of the maze
     r.footprints = True
     m.tracePath({ r: p }, delay=20)
+    print(m.maze_map)
     m.run()
 
 if __name__ == "__main__": main()
